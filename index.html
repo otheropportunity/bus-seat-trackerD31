@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>🚌 Bus Seat Availability Tracker (D31)</title>
+  <title>🚌 Bus Seat Availability Tracker - D31</title>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
   <style>
-    /* (style block remains the same as your current one) */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       background: #f0f4f8;
       padding: 20px;
     }
-    h1 { margin-bottom: 10px; }
+    h1 {
+      margin-bottom: 10px;
+    }
     #seat-stats, #legend {
       font-size: 18px;
       margin-bottom: 15px;
@@ -87,7 +88,15 @@
       user-select: none;
     }
     #resetBtn {
-      background-color: #dc3545;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    background-color: #dc3545; /* red */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
     }
     #lockBtn:disabled, #resetBtn:disabled {
       background-color: #6c757d;
@@ -97,36 +106,39 @@
 </head>
 <body>
 
-<h1>🚌 Bus Seat Availability Tracker (D31)</h1>
+<h1>🚌 Bus Seat Availability Tracker D31-1</h1>
 
+<!-- Seat Statistics -->
 <div id="seat-stats">Loading seat data...</div>
 
+<!-- Color Legend -->
 <div id="legend">
   <span class="legend-box"><span class="color-box green"></span> Available</span>
   <span class="legend-box"><span class="color-box yellow"></span> Pending</span>
   <span class="legend-box"><span class="color-box red"></span> Taken</span>
 </div>
 
+<!-- Seat Grid -->
 <div class="bus" id="bus"></div>
 
+<!-- Action Buttons -->
 <button id="lockBtn">Lock Seat</button>
 <button id="resetBtn">Reset All</button>
 
 <script>
   const firebaseConfig = {
-    apiKey: "AIzaSyAcQd5wDPMbAxR6pEQw6n_LgEdThF_eroU",
-    authDomain: "bus-seat-allocation-d31.firebaseapp.com",
-    databaseURL: "https://bus-seat-allocation-d31-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "bus-seat-allocation-d31",
-    storageBucket: "bus-seat-allocation-d31.appspot.com",
-    messagingSenderId: "247634907615",
-    appId: "1:247634907615:web:6ccc4edecd576b7ed5f46a",
-    measurementId: "G-EWH71FB0CW"
+  apiKey: "AIzaSyAcQd5wDPMbAxR6pEQw6n_LgEdThF_eroU",
+  authDomain: "bus-seat-allocation-d31.firebaseapp.com",
+  databaseURL: "https://bus-seat-allocation-d31-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "bus-seat-allocation-d31",
+  storageBucket: "bus-seat-allocation-d31.firebasestorage.app",
+  messagingSenderId: "247634907615",
+  appId: "1:247634907615:web:6ccc4edecd576b7ed5f46a",
   };
 
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
-  const busId = "bus-d31";
+  const busId = "bus-001";
   const busContainer = document.getElementById("bus");
   const lockBtn = document.getElementById("lockBtn");
   const resetBtn = document.getElementById("resetBtn");
